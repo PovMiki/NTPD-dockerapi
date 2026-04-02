@@ -1,0 +1,30 @@
+1. Stwórz środowisko wirtualne
+
+python -m venv .venv
+
+2. aktywuj środowisko
+
+.venv\Scripts\activate
+
+3. zainstaluj dependencies
+
+pip install -r requirements.txt
+
+4. uruchom serwer
+
+uvicorn NTPD3:app --reload --port 8080
+
+5. testy
+
+uruchomienie przeglądarki pod http://localhost:8080/docs
+następnie można przetestować /predict i wpisanie ilości godzin np. hours : 10
+
+W terminalu za pomocą curla :
+curl.exe -X POST "http://localhost:8080/predict" -H "Content-Type: application/json" -d "{\"hours\": 10}"
+
+########
+KONFIGURACJA
+
+1. parametry : można zmieniać w docker-compose.yml w portach domyślne 8080 na np. 9000:8000
+
+2. wymagane zasoby : RAM 512MB, miejsce na dysku : 2GB
