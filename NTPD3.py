@@ -16,7 +16,7 @@ model.fit(X, y)
 class PredictionInput(BaseModel):
     hours: float
 
-app_author = os.getenv("APP_AUTHOR")
+app_author = os.getenv("APP_AUTHOR", "blad zmiennej")
 @app.get("/")
 def read_root():
     return {"message": f"witam cie {app_author}"}
