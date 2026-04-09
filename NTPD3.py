@@ -3,6 +3,7 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 from pydantic import BaseModel
 import redis
+import os
 
 app = FastAPI()
 
@@ -14,6 +15,11 @@ model.fit(X, y)
 
 class PredictionInput(BaseModel):
     hours: float
+
+app_author = os.getenv("APP_AUTHOR")
+@app.get("/")
+def read_root():
+    return {"message": f"witam cie {app_author}"}
 
 cache = redis.Redis(host='redis-db', port=6379, decode_responses=True)
 @app.get("/redis-test")
